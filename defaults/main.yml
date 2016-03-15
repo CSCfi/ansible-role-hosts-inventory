@@ -1,2 +1,10 @@
 ---
 # defaults file for ansible-role-hosts-inventory
+#
+# make sure you also grab facts from this group 
+hosts_file_ansible_group_to_hosts_file: "{{ groups.all }}"
+hosts_file_to_populate: "/tmp/hosts"
+# ip_match: look for this string in the IP address
+hosts_file_ip_match: "10.11"
+# the number of ipv4_addresses (elements in ansible_all_ipv4_addresses in each host in hosts_file_ansible_group_to_hosts_file)
+hosts_file_num_interfaces: [ 0, 1, 2, 3, 4 ]

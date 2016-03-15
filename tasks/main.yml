@@ -1,16 +1,20 @@
 ---
 # tasks file for ansible-role-hosts-inventory
-#
-- name: populate hosts file
-  lineinfile: 
+
+- debug: var=hosts_file_ansible_group_to_hosts_file
+
+# Add up to hosts_file_num_interfaces number of ipv4 addresses from the ansible_all_ipv4_addresses list from each host in ansible group hosts_file_ansible_group_to_hosts_file as long as it contains hosts_file_ip_match
+- name: "Build hosts file"
+  lineinfile:
         dest='{{ hosts_file_to_populate }}'
-        regexp='^{{ hostvars[item[0]].int_ip_addr }} {{ hostvars[item[0]].ansible_hostname }} {{ hostvars[item[0]].ansible_fqdn }}$' 
-        line="{{ hostvars[item[0]].int_ip_addr }} {{ hostvars[item[0]].ansible_hostname }} {{ hostvars[item[0]].ansible_fqdn }}" 
+        regexp='^{{ hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] }} {{ hostvars[item[0]].ansible_hostname }} {{ item[0] }}$'
+        line="{{ hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] }} {{ hostvars[item[0]].ansible_hostname }} {{ item[0] }}"
         state=present
-  when: hostvars[item[0]].int_ip_addr is defined
-#  when: hostvars[item[0]].int_ip_addr is defined and "10." in item[1] 
-#  with_items: ansible_group_to_hosts_file
+        create=true
+  when: 
+   - hostvars[item[0]].ansible_all_ipv4_addresses is defined 
+   - hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] is defined 
+   - hosts_file_ip_match in hostvars[item[0]].ansible_all_ipv4_addresses[item[1]]
   with_nested: 
-   - ansible_group_to_hosts_file
-   - groups[item[0].ansible_all_ipv4_addresses]
-  tags: dns_update
+   - hosts_file_ansible_group_to_hosts_file
+   - hosts_file_num_interfaces

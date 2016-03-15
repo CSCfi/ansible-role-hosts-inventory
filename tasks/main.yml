@@ -1,0 +1,16 @@
+---
+# tasks file for ansible-role-hosts-inventory
+#
+- name: populate hosts file
+  lineinfile: 
+        dest='{{ hosts_file_to_populate }}'
+        regexp='^{{ hostvars[item[0]].int_ip_addr }} {{ hostvars[item[0]].ansible_hostname }} {{ hostvars[item[0]].ansible_fqdn }}$' 
+        line="{{ hostvars[item[0]].int_ip_addr }} {{ hostvars[item[0]].ansible_hostname }} {{ hostvars[item[0]].ansible_fqdn }}" 
+        state=present
+  when: hostvars[item[0]].int_ip_addr is defined
+#  when: hostvars[item[0]].int_ip_addr is defined and "10." in item[1] 
+#  with_items: ansible_group_to_hosts_file
+  with_nested: 
+   - ansible_group_to_hosts_file
+   - groups[item[0].ansible_all_ipv4_addresses]
+  tags: dns_update

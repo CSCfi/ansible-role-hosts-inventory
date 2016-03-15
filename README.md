@@ -6,25 +6,42 @@ Populates a file ( /etc/hosts ) based on ansible groups
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Before this role runs you also needs to gather facts for the group which you are writing to a hosts file.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+See defaults/main.yml for the actual list
+
+<pre>
+hosts_file_ansible_group_to_hosts_file: "{{ groups.all }}"
+hosts_file_to_populate: "/tmp/hosts"
+# ip_match: look for this string in the IP address
+hosts_file_ip_match: "10.11"
+# the number of ipv4_addresses (elements in ansible_all_ipv4_addresses in each host in hosts_file_ansible_group_to_hosts_file)
+hosts_file_num_interfaces: [ 0, 1, 2, 3, 4 ]
+</pre>
+
+ - If your machines have more than 5 ipv4_addresses add some numbers to the hosts_file_num_interfaces list
+ - Change hosts_file_ip_match to match the IP addresses you want to add to the hosts file
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None, but this could be used with dnsmasq like https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - name: gather_facts
+      hosts: all
+      tasks: [ ]
+
+    - hosts: dns_servers
       roles:
+         - { role: ansible-role-dnsmasq }
          - { role: ansible-role-hosts-inventory }
 
 License
@@ -34,5 +51,3 @@ MIT
 
 Author Information
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

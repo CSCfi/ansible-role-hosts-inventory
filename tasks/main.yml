@@ -11,6 +11,7 @@
         line="{{ hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] }} {{ hostvars[item[0]].ansible_hostname }} {{ item[0] }}"
         state=present
         create=true
+        backup=true
   when: 
    - hostvars[item[0]].ansible_all_ipv4_addresses is defined 
    - hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] is defined 

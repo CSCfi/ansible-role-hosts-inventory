@@ -1,0 +1,15 @@
+---
+# tasks file for ansible-role-hosts-inventory
+
+- name: "Build hosts file form defined host data"
+  lineinfile:
+        dest='{{ hosts_file_to_populate }}'
+        regexp='^{{ hostvars[item][ipaddress_source_var] }} {{ item }}$'
+        line="{{ hostvars[item][ipaddress_source_var] }} {{ item }}"
+        state=present
+        create=true
+        backup=true
+  when:
+   - hostvars[item][ipaddress_source_var] is defined
+  with_items: hosts_file_ansible_group_to_hosts_file
+

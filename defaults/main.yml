@@ -8,3 +8,5 @@ hosts_file_to_populate: "/tmp/hosts"
 hosts_file_ip_match: "10.11"
 # the number of ipv4_addresses (elements in ansible_all_ipv4_addresses in each host in hosts_file_ansible_group_to_hosts_file)
 hosts_file_num_interfaces: [ 0, 1, 2, 3, 4 ]
+hosts_ip_source: "facts"
+ipaddress_source_var: "ip_address"

@@ -1,0 +1,19 @@
+---
+# tasks file for ansible-role-hosts-inventory
+
+# Add up to hosts_file_num_interfaces number of ipv4 addresses from the ansible_all_ipv4_addresses list from each host in ansible group hosts_file_ansible_group_to_hosts_file as long as it contains hosts_file_ip_match
+- name: "Build hosts file form facts"
+  lineinfile:
+        dest='{{ hosts_file_to_populate }}'
+        regexp='^{{ hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] }} {{ hostvars[item[0]].ansible_hostname }} {{ item[0] }}$'
+        line="{{ hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] }} {{ hostvars[item[0]].ansible_hostname }} {{ item[0] }}"
+        state=present
+        create=true
+        backup=true
+  when: 
+   - hostvars[item[0]].ansible_all_ipv4_addresses is defined 
+   - hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] is defined 
+   - hosts_file_ip_match in hostvars[item[0]].ansible_all_ipv4_addresses[item[1]]
+  with_nested: 
+   - hosts_file_ansible_group_to_hosts_file
+   - hosts_file_num_interfaces

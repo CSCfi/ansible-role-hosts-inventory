@@ -15,5 +15,5 @@
    - hostvars[item[0]].ansible_all_ipv4_addresses[item[1]] is defined 
    - hosts_file_ip_match in hostvars[item[0]].ansible_all_ipv4_addresses[item[1]]
   with_nested: 
-   - hosts_file_ansible_group_to_hosts_file
-   - hosts_file_num_interfaces
+   - "{{ hosts_file_ansible_group_to_hosts_file }}"
+   - "{{ hosts_file_num_interfaces }}"

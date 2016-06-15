@@ -9,5 +9,5 @@
 - include: hostdata.yml
   when: hosts_ip_source == "hostdata"
 
-- include: template.yml
-  when: hosts_ip_source == "template"
+#- include: template.yml
+#  when: hosts_ip_source == "template"

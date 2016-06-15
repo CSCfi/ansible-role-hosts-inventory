@@ -9,5 +9,4 @@
         mode=0644
         owner=root
         group=root
-  when:
-   - hostvars[item][ipaddress_source_var] is defined
+  when: hostvars[0][ipaddress_source_var] is defined

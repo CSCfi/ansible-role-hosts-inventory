@@ -3,7 +3,8 @@
  - hosts: localhost
    remote_user: root
    vars:
-     - hosts_file_to_populate: /tmp/hosts
+     - hosts_file_to_populate: "/tmp/hosts"
      - hosts_ip_source: "template"
+     - ipaddress_source_var: "ip_address"
    roles:
      - ansible-role-hosts-inventory

@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-role-hosts-inventory
+
+#- name: "Build hosts file from defined host data using template"
+#  template:
+#        src='hosts.j2'
+#        dest='{{ hosts_file_to_populate }}'
+#        backup=true
+#        mode=0644
+#        owner=root
+#        group=root

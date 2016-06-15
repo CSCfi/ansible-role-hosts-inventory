@@ -1,0 +1,8 @@
+# This file is managed by ansible
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+{% for item in hosts_file_ansible_group_to_hosts_file %}
+{{ hostvars[item].ipaddress_source_var }} {{ item }}
+{% endfor %}

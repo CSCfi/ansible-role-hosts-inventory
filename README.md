@@ -34,6 +34,15 @@ hosts_ip_source: "hostdata"
 ipaddress_source_var: "ip_address"
 </pre>
 
+To use data defined for the hosts and template as a source of the data you can specify the following variables.
+
+<pre>
+hosts_ip_source: "template"
+ipaddress_source_var: "ip_address"
+</pre>
+
+Dependencies
+
 Dependencies
 ------------
 

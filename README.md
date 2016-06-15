@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-hosts-inventory.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-hosts-inventory)
 ansible-role-hosts-inventory
 =========
 

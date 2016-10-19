@@ -35,6 +35,9 @@ hosts_ip_source: "hostdata"
 ipaddress_source_var: "ip_address"
 </pre>
 
+It's also possible to exclude a host by setting hosts_file_exclude to anything. See [tests/inventory](tests/inventory) for examples
+
+
 Dependencies
 ------------
 

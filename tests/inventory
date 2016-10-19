@@ -9,9 +9,9 @@ localhost
 
 [grid]
 gridnode1 ip_address=10.2.100.1 mac_address=00:21:22:33:44:55 pxe=yes
-gridnode2 ip_address=10.2.100.2 mac_address=00:21:22:33:44:55 pxe=yes exclude=foo
-gridnode3 ip_address=10.2.100.3 mac_address=00:21:22:33:44:55 pxe=yes exclude=True
-gridnode4 ip_address=10.2.100.4 mac_address=00:21:22:33:44:55 pxe=yes exclude=False
+gridnode2 ip_address=10.2.100.2 mac_address=00:21:22:33:44:55 pxe=yes hosts_file_exclude=foo
+gridnode3 ip_address=10.2.100.3 mac_address=00:21:22:33:44:55 pxe=yes hosts_file_exclude=True
+gridnode4 ip_address=10.2.100.4 mac_address=00:21:22:33:44:55 pxe=yes hosts_file_exclude=False
 
 [install]
 localhost

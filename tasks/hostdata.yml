@@ -9,6 +9,6 @@
         state=present
         create=true
         backup=true
-  when: (hostvars[item][ipaddress_source_var] is defined) and (hostvars[item][hosts_file_exclude] is not defined)
+  when: (hostvars[item][ipaddress_source_var] is defined) and (hostvars[item]['hosts_file_exclude'] is not defined)
   with_items: "{{ hosts_file_ansible_group_to_hosts_file }}"
 

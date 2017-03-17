@@ -5,7 +5,7 @@
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
 {% for item in hosts_file_ansible_group_to_hosts_file %}
-{% if hostvars[item].hosts_file_exclude is None or hostvars[item].hosts_file_exclude == false %}
-{{ hostvars[item].ipaddress_source_var }} {{ item }}
+{% if hostvars[item].hosts_file_exclude is not defined or hostvars[item].hosts_file_exclude == false %}
+{{ hostvars[item][ipaddress_source_var] }} {{ item }}
 {% endif %}
 {% endfor %}

@@ -10,3 +10,5 @@ hosts_file_ip_match: "10.11"
 hosts_file_num_interfaces: [ 0, 1, 2, 3, 4 ]
 hosts_ip_source: "facts"
 ipaddress_source_var: "ip_address"
+# what handler to call after updating hosts file (default is to call nothing)
+#hosts_update_handler: ""

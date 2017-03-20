@@ -3,7 +3,7 @@
 
 - name: "Build hosts file from defined host data with lineinfile"
   lineinfile:
-        dest='{{ hosts_file_to_populate }}'
+        dest="{{ hosts_file_to_populate }}"
         regexp='^{{ hostvars[item][ipaddress_source_var] }} {{ item }}$'
         line="{{ hostvars[item][ipaddress_source_var] }} {{ item }}"
         state=present
@@ -11,4 +11,4 @@
         backup=true
   when: (hostvars[item][ipaddress_source_var] is defined) and (hostvars[item]['hosts_file_exclude'] is not defined)
   with_items: "{{ hosts_file_ansible_group_to_hosts_file }}"
-
+  notify: "{{ hosts_update_handler | default(omit) }}"

@@ -1,13 +1,11 @@
 ---
 # tasks file for ansible-role-hosts-inventory
 
-- debug: var=hosts_file_ansible_group_to_hosts_file
-
 - include: facts.yml
   when: hosts_ip_source == "facts"
 
 - include: hostdata.yml
   when: hosts_ip_source == "hostdata"
 
-#- include: template.yml
-#  when: hosts_ip_source == "template"
+- include: template.yml
+  when: hosts_ip_source == "template"

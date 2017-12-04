@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-hosts-inventory.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-hosts-inventory)
+[![Build Status](https://travis-ci.org/CSCfi/ansible-role-hosts-inventory.svg?branch=master)](https://travis-ci.org/CSCfi/ansible-role-hosts-inventory)
 ansible-role-hosts-inventory
 =========
 
@@ -41,7 +41,7 @@ It's also possible to exclude a host by setting hosts_file_exclude to anything. 
 Dependencies
 ------------
 
-None, but this could be used with dnsmasq like https://github.com/CSC-IT-Center-for-Science/ansible-role-dnsmasq
+None, but this could be used with dnsmasq like https://github.com/CSCfi/ansible-role-dnsmasq
 
 Example Playbook
 ----------------

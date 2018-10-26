@@ -17,7 +17,7 @@ Role Variables
 See defaults/main.yml for the actual list
 
 <pre>
-hosts_file_ansible_group_to_hosts_file: "{{ groups.all }}"
+hosts_file_ansible_group_to_hosts_file: "{{ groups.all|sort }}"
 hosts_file_to_populate: "/tmp/hosts"
 # ip_match: look for this string in the IP address
 hosts_file_ip_match: "10.11"
@@ -27,6 +27,7 @@ hosts_file_num_interfaces: [ 0, 1, 2, 3, 4 ]
 
  - If your machines have more than 5 ipv4_addresses add some numbers to the hosts_file_num_interfaces list
  - Change hosts_file_ip_match to match the IP addresses you want to add to the hosts file
+ - By sorting the groups then the hosts file looks the same every time
 
 To use data defined for the hosts as a source of the data you can specify the following variables.
 
